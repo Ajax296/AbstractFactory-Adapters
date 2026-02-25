@@ -9,4 +9,12 @@ public class UserInterface {
         this.input = factory.createInput();
         this.output = factory.createOutput();
     }
+
+    public Input getInput() {
+        return input;
+    }
+
+    public Output getOutput() {
+        return output;
+    }
 }

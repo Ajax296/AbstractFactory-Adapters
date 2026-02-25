@@ -6,30 +6,41 @@ public class Main {
 
         Scanner sc = new Scanner(System.in);
 
-        System.out.println("Seleccione una interfaz:");
-        System.out.println("1. Interfaz de consola");
-        System.out.println("2. Interfaz gráfica");
-        System.out.println("3. Interfaz web");
+        System.out.println("Seleccione interfaz:");
+        System.out.println("1. Consola");
+        System.out.println("2. GUI");
+        System.out.println("3. Web");
 
-        int opcion = sc.nextInt();
+        int tipoInterfaz = sc.nextInt();
+
+        System.out.println("Seleccione tipo de dato:");
+        System.out.println("1. String");
+        System.out.println("2. Int");
+
+        int tipoDato = sc.nextInt();
+
+        boolean useInt = (tipoDato == 2);
 
         InterfaceFactory factory;
 
-        switch (opcion) {
+        switch (tipoInterfaz) {
             case 1:
-                factory = new ConsoleFactory();
+                factory = new ConsoleFactory(useInt);
                 break;
             case 2:
-                factory = new GUIFactory();
+                factory = new GUIFactory(useInt);
                 break;
             case 3:
                 factory = new WebFactory();
                 break;
             default:
-                System.out.println("Opción no válida");
+                System.out.println("Opción inválida");
                 return;
         }
 
         UserInterface ui = new UserInterface(factory);
+
+        String xd = ui.getInput().read();
+        ui.getOutput().show(xd);
     }
 }
